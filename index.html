@@ -12,18 +12,22 @@
     </style>
 </head>
 <body>
-    <button onclick="create()">createCilcle</button>
+    <button onclick="create1()">隨機創造圓</button>
+    <button onclick="create2()">固定大小圓</button>
     <script>
-        function create(){
-            new person()
+        function create1(){
+            let p = new person()
+            p.createCircle()
+        }
+        function create2(){
+            new son(20).createCircle()
         }
         class person {
             constructor(){
                 this.r = this.random(10,100)
                 this.color = this.randomColor()
                 this.x = this.random(10,500)
-                this.y = this.random(30,500)
-                this.createCircle()
+                this.y = this.random(40,500)
             }
             random(min,max){
                 return Math.floor(Math.random()*(max-min+1))+min
@@ -40,16 +44,23 @@
             }
             createCircle(){
                 let {r,color,x,y} = this
+                console.log('r',r);
                 let el = document.createElement('div')
                 el.classList.add('circle')
                 el.style.cssText = `
                     width: ${r}px;
                     height: ${r}px;
                     background: #${color};
-                    top: ${x}px;
-                    left: ${y}px;
+                    top: ${y}px;
+                    left: ${x}px;
                     ` 
                 document.body.appendChild(el)
+            }
+        }
+        class son extends person {
+            constructor(r){
+                super()
+                this.r = r
             }
         }
     </script>
