@@ -16,18 +16,18 @@
     <button onclick="create2()">固定大小圓</button>
     <script>
         function create1(){
-            let p = new person()
-            p.createCircle()
+            new person()
         }
         function create2(){
-            new son(20).createCircle()
+            new son(20)
         }
         class person {
-            constructor(){
-                this.r = this.random(10,100)
+            constructor(r){
+                this.r = r || this.random(10,100)
                 this.color = this.randomColor()
                 this.x = this.random(10,500)
                 this.y = this.random(40,500)
+                this.createCircle()
             }
             random(min,max){
                 return Math.floor(Math.random()*(max-min+1))+min
@@ -44,7 +44,6 @@
             }
             createCircle(){
                 let {r,color,x,y} = this
-                console.log('r',r);
                 let el = document.createElement('div')
                 el.classList.add('circle')
                 el.style.cssText = `
@@ -59,8 +58,7 @@
         }
         class son extends person {
             constructor(r){
-                super()
-                this.r = r
+                super(r)
             }
         }
     </script>
