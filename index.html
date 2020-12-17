@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circle {
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="create()">createCilcle</button>
+    <script>
+        function create(){
+            new person()
+        }
+        class person {
+            constructor(){
+                this.r = this.random(10,100)
+                this.color = this.randomColor()
+                this.x = this.random(10,500)
+                this.y = this.random(30,500)
+                this.createCircle()
+            }
+            random(min,max){
+                return Math.floor(Math.random()*(max-min+1))+min
+            }
+            randomColor(){
+                let arr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+                let color = ''
+                let i = 0
+                while(i<6) {
+                    color+=arr[this.random(0,15)]
+                    i++
+                }
+                return color
+            }
+            createCircle(){
+                let {r,color,x,y} = this
+                let el = document.createElement('div')
+                el.classList.add('circle')
+                el.style.cssText = `
+                    width: ${r}px;
+                    height: ${r}px;
+                    background: #${color};
+                    top: ${x}px;
+                    left: ${y}px;
+                    ` 
+                document.body.appendChild(el)
+            }
+        }
+    </script>
+</body>
+</html>
